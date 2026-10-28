@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Safari Sentences – Free Sentence Typing Game | Typing Games Free</title>
+<meta name="description" content="Type full sentences with capitals and punctuation to trek past ten animals. Free typing practice from Typing Games Free.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#1d1a3d;--navy2:#2a2658;--org:#ffb43a;--ok:#8ff0a4;--bad:#ff6b6b}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:10px;background:#2b1f14;font-family:Fredoka,ui-rounded,"Trebuchet MS",system-ui,sans-serif}
+@media(prefers-color-scheme:light){body{background:#f6e7c8}}
+#stage{container-type:inline-size;position:relative;width:100%;max-width:860px;aspect-ratio:4/3;overflow:hidden;border-radius:18px;border:3px solid var(--navy);background:linear-gradient(#f2763c 0%,#fa9a4a 38%,#fdc66f 66%,#fde3a0 100%);user-select:none}
+#glow{position:absolute;left:50%;top:38%;width:70cqw;height:70cqw;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(255,244,190,.85),rgba(255,244,190,0) 65%)}
+.ly{position:absolute;left:0;bottom:0;height:72%;width:140%;transition:transform .9s ease;pointer-events:none}
+.ly svg{width:100%;height:100%;display:block}
+#L1{transform:translateX(calc(var(--p,0) * -30cqw / 10))}
+#L2{transform:translateX(calc(var(--p,0) * -60cqw / 10))}
+#L3{transform:translateX(calc(var(--p,0) * -90cqw / 10))}
+.bird{position:absolute;font-size:2.6cqw;color:#7a3a1c;animation:fly 9s linear infinite;opacity:.8}
+@keyframes fly{from{transform:translateX(-10cqw)}to{transform:translateX(115cqw)}}
+.card{background:linear-gradient(var(--navy2),var(--navy));border:.5cqw solid #4b457f;border-radius:2.2cqw;color:#fff;box-shadow:0 .6cqw 0 rgba(0,0,0,.25)}
+#hud{position:absolute;top:2cqw;left:2cqw;right:2cqw;display:flex;gap:1.6cqw}
+#hud .card{padding:1.1cqw 2cqw;flex:1;min-width:0}
+#hud small{display:block;font-size:1.7cqw;font-weight:700;letter-spacing:.1em;color:#ffcf6e}
+#hud b{font-size:3.6cqw;line-height:1.1}
+#cp{display:flex;gap:.5cqw;margin-top:.6cqw}
+#cp i{flex:1;height:1.2cqw;border-radius:.6cqw;background:#4b457f}
+#cp i.on{background:var(--org)}
+#ring{width:5.4cqw;height:5.4cqw;border-radius:50%;background:conic-gradient(var(--org) calc(var(--t,100) * 1%),#4b457f 0);position:relative;flex:none}
+#ring::after{content:"";position:absolute;inset:.9cqw;border-radius:50%;background:var(--navy)}
+.tm{display:flex;align-items:center;gap:1.4cqw;flex:.9 !important}
+#sp{position:absolute;top:17cqw;left:3cqw;right:3cqw;padding:5cqw 3cqw;text-align:center}
+#sen{font-size:4cqw;font-weight:600;line-height:1.4;white-space:pre-wrap;word-break:break-word}
+#sen .d{color:var(--ok)}#sen .t{color:#cfcbf5;opacity:.8}
+#sen .c{color:#fff;border-bottom:.6cqw solid var(--org)}
+#sp.shake{animation:sh .25s}
+@keyframes sh{25%{transform:translateX(-1cqw)}75%{transform:translateX(1cqw)}}
+#lab{position:absolute;top:-2.4cqw;left:50%;transform:translateX(-50%);background:var(--org);color:#3b2308;font-weight:700;font-size:2cqw;padding:.4cqw 2.4cqw;border-radius:2cqw;white-space:nowrap}
+.actor{position:absolute;bottom:12%;transform:translateX(-50%)}
+#ex{width:11cqw;left:10%;transition:left .12s linear}
+#ex.walk svg{animation:bob .3s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-1cqw) rotate(2deg)}}
+#an{left:76%;font-size:13cqw;line-height:1;transition:transform .3s}
+#an::after{content:"";position:absolute;left:50%;bottom:-.8cqw;width:80%;height:2cqw;transform:translateX(-50%);background:rgba(90,40,10,.3);border-radius:50%;z-index:-1}
+#an.cheer{animation:cheer .7s}
+@keyframes cheer{30%{transform:translateX(-50%) translateY(-5cqw) scale(1.15)}}
+#an.in{animation:slide .5s ease-out}
+@keyframes slide{from{transform:translateX(30cqw)}}
+#pop{position:absolute;left:76%;bottom:30%;font-weight:700;font-size:4cqw;color:#fff;text-shadow:0 .4cqw 0 #b24a10;opacity:0}
+#pop.go{animation:pop .9s ease-out}
+@keyframes pop{from{opacity:1;transform:translateY(0)}to{opacity:0;transform:translateY(-8cqw)}}
+#nx{position:absolute;bottom:2.5cqw;left:50%;transform:translateX(-50%);padding:1.2cqw 4cqw;font-size:2cqw;font-weight:700;letter-spacing:.08em;border-radius:3cqw;background:#5a4630;border:.4cqw solid #3d2e1e;color:#fff;white-space:nowrap}
+#nx b{color:var(--org)}
+#ov{position:absolute;inset:0;z-index:5;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:3cqw;background:rgba(29,26,61,.92);color:#fff}
+#ov h2{margin:1.4cqw 0;font-size:5.4cqw}
+#ov p{margin:.6cqw 0;max-width:60cqw;font-size:2.3cqw;line-height:1.4}
+.logo{background:#fff;padding:1.2cqw 2.2cqw;border-radius:2cqw;display:inline-block}
+.logo img{display:block;height:6.5cqw;width:auto}
+.site{color:var(--org);font-weight:700;font-size:2.3cqw;text-decoration:none;margin:.8cqw 0}
+.site:hover{text-decoration:underline}
+button{margin-top:2cqw;padding:1.4cqw 5cqw;font:700 3cqw Fredoka,system-ui,sans-serif;color:#3b2308;background:var(--org);border:0;border-bottom:.8cqw solid #c47d0a;border-radius:2.4cqw;cursor:pointer}
+button:active{transform:translateY(.4cqw);border-bottom-width:.4cqw}
+.st{display:flex;gap:1.4cqw;flex-wrap:wrap;justify-content:center;margin:1.6cqw 0}
+.st div{background:var(--navy2);border:.4cqw solid #4b457f;padding:1cqw 2.4cqw;border-radius:2cqw;font-weight:700;font-size:2.6cqw}
+small{opacity:.7;font-size:1.9cqw;margin-top:1.4cqw}
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="glow"></div>
+  <div class="bird" style="top:25%">⌃ ⌃</div><div class="bird" style="top:31%;animation-delay:-4s;animation-duration:12s">⌃ ⌃ ⌃</div>
+  <svg width="0" height="0" style="position:absolute"><defs>
+    <g id="ac"><path d="M-4 0L4 0L7 -62L-7 -62Z"/><path d="M-3 -44L-34 -66L-30 -69L0 -50ZM3 -44L32 -64L35 -60L3 -50Z"/><ellipse cx="0" cy="-70" rx="62" ry="13"/><ellipse cx="-36" cy="-62" rx="30" ry="9"/><ellipse cx="38" cy="-61" rx="28" ry="8"/></g>
+  </defs></svg>
+  <div class="ly" id="L1"><svg viewBox="0 0 1120 480" preserveAspectRatio="xMinYMax slice"><path d="M0 330L110 270L250 316L420 240L610 310L770 262L950 318L1120 270V480H0Z" fill="#eaa96f"/><use href="#ac" transform="translate(300 300) scale(.5)" fill="#c9824a"/><use href="#ac" transform="translate(780 296) scale(.55)" fill="#c9824a"/></svg></div>
+  <div class="ly" id="L2"><svg viewBox="0 0 1120 480" preserveAspectRatio="xMinYMax slice"><path d="M0 372Q200 300 390 360T780 350T1120 340V480H0Z" fill="#dd9552"/><use href="#ac" transform="translate(180 350) scale(.9)" fill="#7b4020"/><use href="#ac" transform="translate(900 340) scale(1.1)" fill="#7b4020"/></svg></div>
+  <div class="ly" id="L3"><svg viewBox="0 0 1120 480" preserveAspectRatio="xMinYMax slice"><rect y="372" width="1120" height="108" fill="#e6b85f"/><path id="gr" fill="#d9a647"/><rect x="0" y="388" width="1120" height="28" rx="14" fill="#f3dc9f"/><rect y="430" width="1120" height="50" fill="#c98f3c"/></svg></div>
+  <div id="hud">
+    <div class="card"><small>SCORE</small><b id="sc">0</b></div>
+    <div class="card"><small>CHECKPOINT</small><b><span id="n">0</span>/10</b><div id="cp"></div></div>
+    <div class="card"><small>ACCURACY</small><b id="ac2">100%</b></div>
+    <div class="card tm"><div id="ring"></div><b id="tm">1:30</b></div>
+  </div>
+  <div id="sp" class="card"><div id="lab"></div><div id="sen"></div></div>
+  <div id="ex" class="actor"><svg viewBox="0 0 70 96"><rect x="21" y="66" width="10" height="26" rx="4" fill="#3a2a2a"/><rect x="36" y="66" width="10" height="26" rx="4" fill="#3a2a2a"/><rect x="6" y="40" width="14" height="26" rx="5" fill="#8a5a2b"/><rect x="16" y="38" width="36" height="34" rx="9" fill="#cda76a"/><rect x="48" y="44" width="16" height="9" rx="4" fill="#f6c9a0"/><circle cx="34" cy="26" r="15" fill="#f6c9a0"/><circle cx="29" cy="27" r="2" fill="#2a1a10"/><circle cx="40" cy="27" r="2" fill="#2a1a10"/><path d="M30 33Q34.5 37 39 33" stroke="#2a1a10" stroke-width="1.6" fill="none"/><path d="M14 17Q34 -8 54 17Z" fill="#f4ead0"/><ellipse cx="34" cy="17" rx="26" ry="6" fill="#f4ead0"/><rect x="18" y="13" width="32" height="4" fill="#b9843c"/></svg></div>
+  <div id="an" class="actor"></div><div id="pop"></div>
+  <div id="nx"></div>
+  <div id="ov"></div>
+</div>
+<script>
+const SITE='https://typinggamesfree.io/',LOGO='data:image/webp;base64,UklGRjgPAABXRUJQVlA4WAoAAAAQAAAAWAEATwAAQUxQSKMHAAABoIZq2zM1uhmGQWQQGYIEkbTtKSLiNhH5kFS3pSEiadtE3N7S84EMiwyhd7c3SZGtkkaQIYiIiIiIhF4QERERGWQYZHh+vM/7vO83Oub7tUTEBEBIsxr+5rwvv6TSqSyJeFBQWulUrAzPbbnFlU5lSWTui5FFt5/UJwGNS+p4DraRdObe37tyuFOkTgYAhJKkHuGqSU2HNcG6v8eJTw207X3WLNxwM0F8ovfXzwt01aRvEoySvlCzkvTtSjWZXuCKWx4Qn+z9tTH7fM1QiaaHaYGB+qDY2kTYSvFtMnSN1o+R4WZdk+CKlWpNXWY0pUk8Gcg6RTPMQW5hmqmwQeNFtqjBxvOT5NHqFFm7IhgL2NivOZIRX5OhjubIjMBNpofbReqDgBVqtTYQMAt0kkfhYbIWGBPQEhttmpuZsCiZ/XYw6SKmjYnCTjJii6rMHPKqkewtIulWG/e4wFgmNFP2y0so9IESmlTSL0r64vFbIxy9be1Ps+81D/483ORGW670JUy6NIOtsSb32x9vDqZ0W0UxGzP5TCFZGohrXQAD3Ghrs+tGz9x4MMfx1Vw1tBeYdsUhtReSUgBo4vZbm1lkdIdrgDAgC6eY1FoIA5oY8yfTYYPKmWpb1ZDmppieMLT5yELrmUQYwGHmU7P8FPOjNYqZ5KeZDlh/jdhTsNnBOMxk0MbHzP5MWELsxxDTnOtdaFShNwEMKamFZhhm/rU3lmNQRmyjvR1cpY3ghJLIGVXoeYMR5XvmkjLmUSm3NbvhBPM9sCytXIGFISZuj94z2MxV2HOZdMTG86T2ooOpM9ir9DF3iGjsZ48quM1ZrowZCeBjUuts9DM9HvQZNHKL7J1hJgM26pgfcYw5YfDmDBFN5wDImyGiGz96VMbVZrnAbYXKcE2ZCtvo9YwqZAeZdJ69C8wj2DzBfIr3mC6DyttERCsBvEZEFPNqJedmORxkouFp5VfYGGQ6vbgkO8IkQ/auMANWOhkHZUwiZHBB2QagXqnxqoAb37Yguy1LK/1vkrraygPmhhepQtEpZjIALHG0y2RxpgfAcke7kAkllPQChFMKFRvsVo4AaFGetdHq8sUAglMMEY3eiNUtz1roVNKPlOGgjeAUc8ELiop+ZMYAuKSNyXqYWwAukHYbU0zqEwB3mPcM1iodALqJaCJoQ78NADp17L3abNWg8Edg4zViD1s6wYxuNBv1rMPGe8wVAG1Mi0FBmojGAwhNEVEcnu01IPoyS0WSghKTesep+vgR956l1cMKtc8J55hmAC7Ta4AnRESL8DwR0RHvCiZNUkuyE/7WDcJEvtJS5X6Gn229TC2AjUwy16BdeRs1yjbvsHbKgKJZarNutxdDAVsFyTkjN8ksB7CMoVcMooqLZuXFDEDBp639M5KuLJUzwc0s8mIzbOF3ozPMZACodN0uG3GmB8BW170jeYXURAhAcIppNNio/IkrRDQVsrLb4RdyarBkW8s4NxHITmjh4vAgCntlRkeYqSDUmI1rTC/YdkkDM+6qY8zPBkuUB4FhIuqClWpYjjxh0nlZajXXYO/OVniAbpMmJpVjr40ZsvAjIx80CIwTUfrFNBGdyiicYagwS5Vym81aXNd199cuh9bSNpNPmXS+vRZm2MKghVSeDB1ERCeIiHZl1n5u0TyjFKaWQqMGtQw9ay/KJEJGeSkLVGlwRGGLM+vLeRyiBhXcansfMFRoVEE2Pzeo003nZNZ+LjIvK0rJFnJRe1VcjdHnVloNlut6kVlnmGTOvAyXZIERZjjfWkGa6QqatDKDDt/N3DMIJTQtmVU4wjzC/KxShjaG7ny62nnzig0MMdT1QVXV2/2Ce8z34A8z6QUydGvqLQ3EtS6AI503L5z61nWb/5wi9u95GvpkNZzYpIkTbwMiM0yjppahtQbnNGWWhBcAXCDjxvnae7LQA68KE1aqiH1N8zy316CeS+bOhqnIfC13XITVMx6h0cpeJhXWhKaYPw1e4foxGz7FfA0xGTZOeoQvUxb+ZG5D38U8MchNMT/PhhOYvy2bkWHB7u6UJjXY3lRshCWxgbRmuq9tbxHwiGkVnGHShTIMMh9nRE1bb0I30bYWWSF7BorKHad8eR6sB58td5zyZ3MxhweLSiscp6wA/NPDPPT/kN0iwyYgJ0XS6YGf12t2kek5AA6ZXpGQVERSEUlFJBWRVERSEUlFJM1m6o2Ib0VdQd+K6v2rHh9nOq7dJRiJx+M9SS6VJ+mLaz+XDMW1Mf9hCFLNOQDI72GoTPIKxJoa2PQ7sIPb6EOVc/U+1Eruc/9qt3/19WwQkxRSkkJKUkhJCilJISUppCSFOIuVcg0+1HquVvK9yz8vanP5V3yI6Thfa9bMlUv0b4r0H/sQ+t2Sfx3HqY6lmPQCX0l+B75V1LcajfhVY2UQNTh8RNTk8IU+xBCkFrZC9grEmhp47Df0uq47ynzvN50D0MKMBGcHSSElKaQkhZSkkJIUUpJCSlJISZq9NjL0mg+Vn2JiTzPsXAFTj9DJ3PajDjLpF32oMoZ2i/ri2s8lQ3FtzD8JjjHdIuE5ifCKf4ILzEzhUw47u2DVsx0MfeBDFaWZKz4UBpjpPB/GR/SdAABWUDggbgcAANAtAJ0BKlkBUAA+MRaJQ6IhIRSJTMAgAwSm7xIB7/+CMIAP4Vl/45eCDJvzz6X+Qn5Sco537+TDPE7H4k/x35c/4r5qf6b/G+27zAP0t/yf5gdxLzAfpD/3/7371PoA/W/2AP5x/LfWU/1Xs2fyP1AP1u9J//tf5r4Pf229g39V//D+f///7wDqP+wH8K/B/5B8yfYGJv8gnpPyq6gD+iY0BnIHu1/dv6TxKPKw/a/y38yD/Seop/l/6F7JPUAftGBWeZFNWlFsHk4evOKHozVRndeqBUvKmfmpLktyyavn/mjz8lDGDfdVuNaV7SUaBNeHj1eCFuzuicP4VmzKKNTQPwVPvK9mVLCFN+47kiaRis3ILTl9zSyfYUQhLwuLanz02LbW3oPTkky4ivYEfddjbOBWO6zs7UCv9IklXppyC48NuwsilwzelM9FHAR6IXmU+tcaB5OeEix74wICQa7xqNldUT0i+WxjjGjCDzi/Oomq/s1AAAD+ycyiwU0Be+unxZ/lh1uA+7g7H2RNP8DGSX4Q19YgJqtfzitwgwfFJq77kZ0tMpkBOeOTYKZQPOs/zWfsjh8kuC6TcSI++4axSfod6YG//qPZlpA2cUoqLtEps6djFVFY9UTt+PIxb4RzBzHd1SJ22gVQoHnQ4knnIgvobgkFUUla058tvKNlt+K6z8Thw/L4yoQAPrZuRP/59rvLlaxK4qrLSbnBJBGIvgTrzIhxELqC4OIwsrwEZ/Ud7gMQnAcYMlyy+m3qExIfF3i5awoTwnt5u0CRExVlYYZ2sIP2cZlE1NMAd4CpWv9zt8y/i5//lzwHyyx3iV8zTde6tKzxOXIDVnKfnYZVQyKNlZ3gfyd/4EaizRyu3//bVIrbdj1Lprq2hJ7CJd4/aYe3mA0B8XVQrblR3svk8e80w+bHiy+uf7x8yETdipM7F+2CMPsQeBFXd8wgLiSblOFkPelVznUpp8Tyxzqx9JHDzwKqBf/llbS+NW9P9SD/r7dHEk0+6saGfh5/EtJlX/2hMO/dWJgK890AkL4U/bJEBTE7oTtGkVrxkWoB5tw6qIy23UyInrrHJ8NJ8hoRuWVTBFUuAFBvYGnE/BuairDgcZp+relPlPJE24ZdT14KhYjIqaAA+v8Vzk9EVVcMR4UoiVhLQd0NoA9BA8LK+GNE3UOmMfBE1pzmHE0QHuNEMpvltmjjWyxgMS1cnCL9Lt3jOpn6d6hsC1jjLgVTDdtov93DvIhW1OC89MLG9W4XrH63nfDToFw9KdWOdi5j2/adcFVvbLwP4MrfDrBUEHqBY7AN/iY+ov//6k+vpvGsKK51LaiaSmcfooGDEY6j6Ebpj8AjEStGtVOB6leu74bWhs6urj7Af/8nI143cyqVA+EALNY07bZ42o3SVJ/nebdSKnoVcs25MLXGNSyCvYcWZ5Yrrj/CxR/gv5wBtXxruRh4Y/VK91Oj8++OO8equ4CLdrtqXIWR1n9p/+BgjYDO+8vepX2lpB0Kx/45XulLvJTIwYbiOO7UciJofojZCQlUg8klENJ8SMX1coFHHDiP3p9RS3iS4xgb34b8J2g4dZJZILssigAnWi7+wdPzhcuGMcI9dla2uhVqOHbdbrB2lJl3OJBNxvqQU8WzGzBslix+VPNA8fxDcEx6WOQ7K0o+Uc4cxRtHyIGSCfmXwrwO8ZSzD5X+DgJ+xEoize+nHCSv7yXdUE5QeW/zTJU6OkkVHNWg94uxPPaE8Y8gVy2mfXEXMcArljL1Barobh/05R31AC6lbE0iYjyfG2phwk6/5XUe99KxgQn8jc/4cFjojGKYIoXNK9NmJzS73eXCry0X/iMREi2rcNnG/ofojruUUGQnoKLKuFhsPiZHxNM+R6toHKkrOYV1aJA6b3Phh4qAAAYe4WIvccLcpDUrtzPyADqHHd49LbNYEDUYaJtj4P3a6OndRnIfUVysX9f/wH8y55NQziUH6WZX6w2/i/kKbfP+Km+9ij0f+FYbp1u+YVoA/ZQU2f5xKSuRpeVXxx+ds/OIvc5te3ID4AqE3RMfhnLEqBXmqvHNYdlWXPDmMUURiPqbiKEN/qU3nWy+630UbLe8wq4coiQT7QCMlvubrjLxLhFaKyO9Xph+tEiB3EdkoRbQiyFduwOpW+mCSbx52LcDkIroR4zaxn0S57t83CiyjrHU3mnNljcFCOCDQio8Ttd0vbtrVcnTn8s6qTVONaJ/ETqmh9kuFIOqlLJnq1GzD9e6bLIN5tXcDKxi1xGhfhUs0eqfhGWQFKuval2lWf2yalXNqh2/y6ymSzzK3iadMzuk/cot3fn2OrNYDBF8V5kdIEwVpOfKkAM2mHI/pfrNKCHD+7WPYCpDSDTS71hgfsQZSB3O84txF09roDZ+f+5xDmccBUVY2jWizyae80W4SDWsyRoK33i4+NaotuUlS/3MN6tb019xtXueMJ5IiEqXtxSUI5XjBviKuM9g34MNDskxjtxnJv+jHU+pxbY5N3yuH/YPOgPWbWLf9meYo6xp0SfwAA==';
+const ANIMALS=[['🦒','Giraffe'],['🐘','Elephant'],['🦁','Lion'],['🦓','Zebra'],['🦏','Rhino'],['🦛','Hippo'],['🐆','Leopard'],['🐊','Crocodile'],['🦍','Gorilla'],['🐒','Monkey']];
+const POOL=['The giraffe stretches its neck to reach the tallest leaves.','Can you see the elephants near the river?','A lion rests in the shade of an old tree.','Look out, the zebras are running across the plain!','The rhino walks slowly through the tall, dry grass.','Hippos spend most of the day in cool water.','A leopard hides high up in the branches.','Is that a crocodile sleeping on the muddy bank?','The explorer packs a map, a hat, and some water.','Monkeys swing from branch to branch in the morning.','Wow, the sunset turns the whole sky orange!','Our jeep bumps along the dusty road.','Birds sing loudly when the sun comes up.','Did you remember to bring your binoculars?','The gorilla gently picks a leaf from the bush.','Heavy rain fills the dry riverbed in minutes.','We camp under the stars after a long day.','A young cub plays near its mother.','Please keep your voice low and stay in the jeep.','The safari guide points to a herd in the distance.'];
+const $=id=>document.getElementById(id),T=90;
+let q=[],i=0,pos=0,mist=0,good=0,score=0,run=false,t0=0,timer=null,best=0,wt=null;
+try{best=+localStorage.getItem('ss_best')||0}catch(e){}
+// spiky grass
+let g='M0 380';for(let x=0;x<1120;x+=16)g+=`L${x+4} ${352+(x/16%3)*6}L${x+10} 380`;$('gr').setAttribute('d',g+'L1120 380Z');
+$('cp').innerHTML='<i></i>'.repeat(10);
+
+function intro(){
+  $('ov').style.display='flex';
+  $('ov').innerHTML=`<a class="logo" href="${SITE}" target="_blank" rel="noopener" title="Visit Typing Games Free"><img src="${LOGO}" alt="Typing Games Free"></a>
+  <a class="site" href="${SITE}" target="_blank" rel="noopener">typinggamesfree.io</a>
+  <h2>🦁 Safari Sentences</h2>
+  <p>Type each sentence <b>exactly</b>, with capitals, punctuation and spaces, to trek on to the next animal.</p>
+  <p>Ten sentences. Ninety seconds. A wrong key never counts!</p>
+  <button id="go">Start Trek</button><small>Press Enter or Space · Best score: ${best}</small>`;
+  $('go').onclick=start;
+}
+function start(){
+  q=POOL.slice().sort(()=>Math.random()-.5).slice(0,10);
+  i=0;pos=0;mist=0;good=0;score=0;run=true;t0=performance.now();
+  $('ov').style.display='none';clearInterval(timer);timer=setInterval(tick,100);newAnimal(false);render();
+}
+function tick(){
+  const left=T-(performance.now()-t0)/1000,s=Math.max(0,Math.ceil(left));
+  $('tm').textContent=Math.floor(s/60)+':'+String(s%60).padStart(2,'0');
+  $('ring').style.setProperty('--t',Math.max(0,left/T*100));
+  if(left<=0)finish(false);
+}
+function newAnimal(anim){
+  const a=$('an');a.textContent=ANIMALS[Math.min(i,9)][0];a.classList.remove('cheer','in');void a.offsetWidth;if(anim)a.classList.add('in');
+}
+function render(){
+  const s=q[i],c=s[pos];
+  $('sen').innerHTML=[...s].map((ch,k)=>`<span class="${k<pos?'d':k==pos?'c':'t'}">${ch}</span>`).join('');
+  $('lab').textContent=`CHECKPOINT ${i+1} · ${ANIMALS[i][1].toUpperCase()}`;
+  $('n').textContent=i;$('sc').textContent=score;
+  const tot=good+mist;$('ac2').textContent=(tot?Math.round(good/tot*100):100)+'%';
+  [...$('cp').children].forEach((e,k)=>e.classList.toggle('on',k<i));
+  $('ex').style.left=(10+pos/s.length*40)+'%';
+  document.getElementById('stage').style.setProperty('--p',i);
+  $('nx').innerHTML=`NEXT: <b>${c===' '?'SPACE':c}</b> · TYPE TO TREK`;
+}
+function finish(won){
+  run=false;clearInterval(timer);
+  const sec=Math.min(T,(performance.now()-t0)/1000),total=good+mist;
+  const wpm=Math.round((good/5)/(sec/60)),acc=total?Math.round(good/total*100):0;
+  const sc=Math.max(0,score+(won?Math.round(T-sec)*5:0)),nb=sc>best;
+  if(nb){best=sc;try{localStorage.setItem('ss_best',best)}catch(e){}}
+  $('ov').style.display='flex';
+  $('ov').innerHTML=`<h2>${won?'🎉 Safari complete!':'⏰ Time is up!'}</h2>
+  <p>${won?'You reached all ten animals.':`You reached checkpoint ${i} of 10.`}${nb?' New best score!':''}</p>
+  <div class="st"><div>Score ${sc}</div><div>WPM ${wpm}</div><div>Accuracy ${acc}%</div><div>Mistakes ${mist}</div></div>
+  <button id="go">Play again</button>
+  <a class="site" href="${SITE}" target="_blank" rel="noopener">More free typing games at typinggamesfree.io →</a>
+  <small>Press Enter or Space to play again</small>`;
+  $('go').onclick=start;
+}
+addEventListener('keydown',e=>{
+  if(!run){if((e.key==='Enter'||e.key===' ')&&e.target.tagName!=='A'){e.preventDefault();start()}return}
+  if(e.ctrlKey||e.metaKey||e.altKey||e.key.length!==1)return;
+  e.preventDefault();
+  const s=q[i];
+  if(e.key===s[pos]){
+    good++;pos++;score+=10;
+    $('ex').classList.add('walk');clearTimeout(wt);wt=setTimeout(()=>$('ex').classList.remove('walk'),250);
+    if(pos===s.length){
+      const p=$('pop');p.textContent='+'+(s.length*2);p.classList.remove('go');void p.offsetWidth;p.classList.add('go');
+      $('an').classList.add('cheer');score+=s.length*2;
+      i++;pos=0;
+      if(i===10){$("sc").textContent=score;return finish(true)}
+      setTimeout(()=>newAnimal(true),550);
+    }
+    render();
+  }else{
+    mist++;const b=$('sp');b.classList.remove('shake');void b.offsetWidth;b.classList.add('shake');render();
+  }
+});
+intro();
+</script>
+</body>
+</html>
